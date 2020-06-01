@@ -4,20 +4,26 @@ import domain.client.Client
 import domain.client.ClientFactory
 import groovy.test.GroovyTestCase
 import infrastructure.client.ClientFactoryImpl
-import domain.account.Money
+import domain.account.money.Money
 
 class MoneyDepositTest extends GroovyTestCase{
     ClientFactory clientFactory
-    MoneyTransaction useCase
+    Deposit useCase
 
     MoneyDepositTest(){
         this.clientFactory = new ClientFactoryImpl()
-        this.useCase = new MoneyTransaction()
+        this.useCase = new Deposit()
     }
 
     void depositMoney() {
-        Client client = clientFactory.withMoney("francisco", Money.Factory.of(100))
-        useCase.depositMoney(client, Money.Factory.of(100))
+        //Given
+        Client client = clientFactory.withMoney("francisco", Money.Factory.dollar(100))
+        DepositRequest request = DepositRequest.Factory.of(client.id, Money.Factory.dollar(10))
+
+        //When
+        useCase.cashDeposit(request)
+
+        //Then
         print client.accountBalance()
     }
 }

@@ -2,7 +2,7 @@ package infrastructure.client
 
 import domain.account.Account
 import domain.account.AccountFactory
-import domain.account.Money
+import domain.account.money.Money
 import domain.client.Client
 import domain.client.ClientFactory
 import infrastructure.account.AccountFactoryImpl

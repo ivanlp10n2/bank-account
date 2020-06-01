@@ -1,6 +1,6 @@
 package domain.client
 
-import domain.account.Money
+import domain.account.money.Money
 import domain.client.Client.ClientId
 
 interface ClientFactory {

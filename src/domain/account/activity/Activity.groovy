@@ -1,4 +1,7 @@
-package domain.account
+package domain.account.activity
+
+
+import domain.account.money.Money
 
 class Activity {
     private final ActivityId id

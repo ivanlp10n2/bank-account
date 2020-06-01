@@ -2,12 +2,12 @@ package domain.client
 
 
 import domain.account.Account
-import domain.account.Money
+import domain.account.money.Money
 import domain.shared.Entity
 
 
 class Client implements Entity<Client>{
-    private final ClientId id
+    final ClientId id
     private final Account account
 
     Client(ClientId clientId, Account account){

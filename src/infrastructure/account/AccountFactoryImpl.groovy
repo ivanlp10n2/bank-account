@@ -3,7 +3,7 @@ package infrastructure.account
 import domain.account.Account
 import domain.account.AccountFactory
 import domain.client.Client
-import domain.account.Money
+import domain.account.money.Money
 
 class AccountFactoryImpl implements AccountFactory{
 

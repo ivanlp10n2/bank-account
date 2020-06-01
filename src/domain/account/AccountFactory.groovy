@@ -1,5 +1,6 @@
 package domain.account
 
+import domain.account.money.Money
 import domain.client.Client
 
 interface AccountFactory {

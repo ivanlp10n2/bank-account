@@ -1,5 +1,9 @@
 package domain.account
 
+import domain.account.activity.AccountOperation
+import domain.account.activity.Activity
+import domain.account.activity.ActivityFrame
+import domain.account.money.Money
 import domain.client.Client
 import domain.shared.Entity
 
@@ -8,12 +12,11 @@ import domain.shared.Entity
  * */
 class Account implements Entity<Account>{
     private final AccountId id
-    private final Client owner
     private final Money balance
     private ActivityFrame activities
 
-    Account(Client client, Money startingBalance){
-        this.owner = client
+    Account(AccountId id, Money startingBalance){
+        this.id = id
         this.balance = startingBalance
     }
 
@@ -38,19 +41,20 @@ class Account implements Entity<Account>{
     }
 
     static class AccountId {
-        final private Long value
+        final private Long uuid
         final private Client owner
 
-        AccountId(Long value, Client owner){
-            this.value = value
+        AccountId(Long uuid, Client owner){
+            this.uuid = uuid
             this.owner = owner
         }
 
         @Override
         boolean equals(Object obj) {
-            value
-                ? value == (obj as AccountId).value
-                : value
+            uuid && owner
+                ? uuid == (obj as AccountId).uuid
+                    && owner == (obj as AccountId).owner
+                : uuid
         }
     }
 }
