@@ -1,9 +1,9 @@
-import application.MoneyDepositTest
+import application.MoneyDepositServiceTest
 
 class BankAccountApplication {
 
     static void main(String[] args) {
-        MoneyDepositTest test = new MoneyDepositTest()
+        MoneyDepositServiceTest test = new MoneyDepositServiceTest()
         test.depositMoney()
     }
 }

@@ -1,18 +1,19 @@
 package application
 
+import application.model.DepositRequest
 import domain.client.Client
 import domain.client.ClientFactory
 import groovy.test.GroovyTestCase
 import infrastructure.client.ClientFactoryImpl
 import domain.account.money.Money
 
-class MoneyDepositTest extends GroovyTestCase{
+class MoneyDepositServiceTest extends GroovyTestCase{
     ClientFactory clientFactory
-    Deposit useCase
+    DepositService useCase
 
-    MoneyDepositTest(){
+    MoneyDepositServiceTest(){
         this.clientFactory = new ClientFactoryImpl()
-        this.useCase = new Deposit()
+        this.useCase = new DepositService()
     }
 
     void depositMoney() {

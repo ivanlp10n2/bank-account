@@ -1,4 +1,4 @@
-package application
+package application.model
 
 import domain.account.money.Money
 import static domain.client.Client.ClientId

@@ -1,12 +1,13 @@
 package application
 
+import application.model.DepositRequest
 import domain.account.Account
 import domain.account.AccountRepository
 import domain.account.money.Money
 import domain.client.Client
 import domain.client.ClientRepository
 
-class Deposit implements DepositUseCase{
+class DepositService implements DepositUseCase{
 
     ClientRepository clientRepository
     AccountRepository accountRepository
