@@ -13,19 +13,12 @@ class Money {
 
     static class Factory {
         static Money of(Money money){
+            assert money.currency in Currency.values()
             new Money(money.currency, money.amount)
         }
         static Money dollar(double value){
             new Money(Currency.Factory.dollar(), BigDecimal.valueOf(value))
         }
-    }
-
-    static Money add(Money a, Money b){
-        Factory.dollar(a.amount.add(b.amount))
-    }
-
-    static Money subtract(Money a, Money b) {
-        Factory.dollar(a.amount.subtract(b.amount))
     }
 
     Money plus(Money money){

@@ -20,6 +20,6 @@ class AccountRepositoryImpl implements AccountRepository {
 
 
     Boolean validateIntegrity(Account account) {
-        true
+        account
     }
 }

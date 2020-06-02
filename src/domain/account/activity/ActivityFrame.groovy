@@ -4,35 +4,38 @@ import domain.account.Account
 import domain.account.money.Money
 
 class ActivityFrame {
-    List<Activity> activities
+    private final List<Activity> activities
 
-    ActivityFrame(List<Activity> activities){
-        assert activities
+    private ActivityFrame(List<Activity> activities){
         this.activities = activities
     }
 
-    Money calculateBalance(Account.AccountId accountId){
+    static class Factory{
+        static ActivityFrame from(List<Activity> activities){
+            assert activities
+            new ActivityFrame(activities)
+        }
+    }
 
+    Money calculateBalance(Account.AccountId accountId){
         Money despositBalance = sum(depositActivities())
         Money withdrawBalance = sum(withdrawActivities())
-
         despositBalance - withdrawBalance
+    }
+
+    private Money sum(List<Activity> activities){
+        activities.inject(Money.ZERO){ totalMoney, activity -> //Inject works like reduce
+            totalMoney + activity.money
+        }
     }
 
     List<Activity> depositActivities(List<Activity> activities){
         activities.findAll{ it.operation == AccountOperation.ADD }
     }
 
-    private Money sum(List<Activity> activities){
-        activities.inject(Money.ZERO){ totalMoney, activity -> //Inject works like reduce
-            totalMoney.add(activity.money)
-        }
-    }
-
     List<Activity> withdrawActivities(List<Activity> activities) {
         activities.findAll { it.operation == AccountOperation.WITHDRAW}
     }
-
 
     void add(Activity activity){
         assert activity

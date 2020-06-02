@@ -1,9 +1,7 @@
 package application
 
-import domain.account.Account
-import domain.account.money.Money
+import application.model.DepositRequest
 
 interface DepositUseCase {
-
-    cashDeposit(Account.AccountId accountId, Money money)
+    void cashDeposit(DepositRequest depositRequest)
 }

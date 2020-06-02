@@ -22,13 +22,12 @@ class Account implements Entity<Account>{
 
     void deposit(Money money){
         assert valid(money)
-
         Activity activity = Activity.Factory.of(AccountOperation.ADD, money)
         activities.add(activity)
     }
 
     boolean valid(Money money) {
-        assert money
+        money
     }
 
     Money currentBalance(){

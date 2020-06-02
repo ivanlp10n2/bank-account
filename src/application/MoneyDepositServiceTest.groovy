@@ -8,12 +8,17 @@ import infrastructure.client.ClientFactoryImpl
 import domain.account.money.Money
 
 class MoneyDepositServiceTest extends GroovyTestCase{
-    ClientFactory clientFactory
-    DepositService useCase
+    private final ClientFactory clientFactory
+    private final DepositService useCase
 
     MoneyDepositServiceTest(){
         this.clientFactory = new ClientFactoryImpl()
         this.useCase = new DepositService()
+        this.startup()
+    }
+
+    void startup(){
+        
     }
 
     void depositMoney() {
