@@ -1,7 +1,7 @@
 package domain.account.money
 
 class Money {
-    static Money ZERO = Money.Factory.of(0l)
+    static Money ZERO = Money.dollar(0)
 
     private final BigDecimal amount
     private final Currency currency
@@ -11,30 +11,35 @@ class Money {
         this.amount = amount
     }
 
-    static class Factory {
-        static Money of(Money money){
-            assert money.currency in Currency.values()
-            new Money(money.currency, money.amount)
-        }
-        static Money dollar(double value){
-            new Money(Currency.Factory.dollar(), BigDecimal.valueOf(value))
-        }
+    static Money of(Money money){
+        assert money.currency in Currency.values()
+        new Money(money.currency, money.amount)
+    }
+    static Money dollar(double value){
+        new Money(Currency.USD, BigDecimal.valueOf(value))
     }
 
     Money plus(Money money){
-        Factory.dollar(this.amount.add(money.amount))
+        dollar(this.amount.add(money.amount))
     }
 
     Money minus(Money money){
-        Factory.dollar(this.amount.subtract(money.amount))
+        dollar(this.amount.subtract(money.amount))
     }
 
     Money negate(){
-        Factory.dollar(this.amount.negate())
+        dollar(this.amount.negate())
     }
 
     @Override
     String toString() {
         "\$ ${amount}"
     }
+
+    enum Currency {
+        USD,
+        DEFAULT,
+    }
 }
+
+

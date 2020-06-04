@@ -15,14 +15,14 @@ class Account implements Entity<Account>{
     private final Money balance
     private ActivityFrame activities
 
-    Account(AccountId id, Money startingBalance){
-        this.id = id
-        this.balance = startingBalance
+    Account(AccountId newId, Money startingBalance){
+        id = newId
+        balance = startingBalance
     }
 
     void deposit(Money money){
         assert valid(money)
-        Activity activity = Activity.Factory.of(AccountOperation.ADD, money)
+        Activity activity = Activity.of(AccountOperation.ADD, money)
         activities.add(activity)
     }
 
@@ -36,24 +36,20 @@ class Account implements Entity<Account>{
 
     @Override
     boolean equalAs(Account other) {
-        id == other
+        id == other.id
     }
 
     static class AccountId {
-        final private Long uuid
         final private Client owner
 
-        AccountId(Long uuid, Client owner){
-            this.uuid = uuid
+        AccountId(Client owner){
             this.owner = owner
         }
 
         @Override
         boolean equals(Object obj) {
-            uuid && owner
-                ? uuid == (obj as AccountId).uuid
+            owner && obj  //Groovy truth
                     && owner == (obj as AccountId).owner
-                : uuid
         }
     }
 }

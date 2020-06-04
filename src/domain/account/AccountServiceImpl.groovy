@@ -12,7 +12,7 @@ class AccountServiceImpl implements AccountService{
         this.accountRepository = new AccountRepositoryImpl()
     }
     @Override
-    def deposit(Account.AccountId accountId, Money money) {
+    void deposit(Account.AccountId accountId, Money money) {
         Account account = accountRepository.find(accountId)
         assert account
         account.deposit(money)

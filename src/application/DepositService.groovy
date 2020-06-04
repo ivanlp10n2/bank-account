@@ -5,7 +5,7 @@ import domain.account.AccountRepository
 import domain.account.money.Money
 import domain.client.Client
 import domain.client.ClientRepository
-import infrastructure.account.AccountFactoryImpl
+import infrastructure.account.AccountRepositoryImpl
 import infrastructure.client.ClientRepositoryImpl
 
 class DepositService implements DepositUseCase{
@@ -15,14 +15,14 @@ class DepositService implements DepositUseCase{
 
     DepositService(){
         clientRepository = new ClientRepositoryImpl()
-        accountRepository = new AccountFactoryImpl()
+        accountRepository = new AccountRepositoryImpl()
     }
 
     @Override
     void cashDeposit(DepositRequest request){
         Client client= clientRepository.find(request.clientId)
         assert client
-        client.deposit(Money.Factory.of(request.money))
+        client.deposit(Money.of(request.money))
     }
 
 }

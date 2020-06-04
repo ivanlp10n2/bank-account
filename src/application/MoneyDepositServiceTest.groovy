@@ -9,7 +9,7 @@ import domain.account.money.Money
 
 class MoneyDepositServiceTest extends GroovyTestCase{
     private final ClientFactory clientFactory
-    private final DepositService useCase
+    private final DepositUseCase useCase
 
     MoneyDepositServiceTest(){
         this.clientFactory = new ClientFactoryImpl()
@@ -23,8 +23,8 @@ class MoneyDepositServiceTest extends GroovyTestCase{
 
     void depositMoney() {
         //Given
-        Client client = clientFactory.withMoney("francisco", Money.Factory.dollar(100))
-        DepositRequest request = DepositRequest.Factory.of(client.id, Money.Factory.dollar(10))
+        Client client = clientFactory.withMoney("francisco", Money.dollar(100))
+        DepositRequest request = DepositRequest.of(client.id, Money.dollar(10))
 
         //When
         useCase.cashDeposit(request)

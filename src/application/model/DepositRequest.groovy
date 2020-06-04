@@ -7,13 +7,12 @@ class DepositRequest {
     final ClientId clientId
     final Money money
 
-    DepositRequest(ClientId clientId, Money money){
+    private DepositRequest(ClientId clientId, Money money){
         this.clientId = clientId
         this.money = money
     }
-    static class Factory{
-        static DepositRequest of(ClientId clientId, Money money){
-            new DepositRequest(clientId, money)
-        }
+
+    static DepositRequest of(ClientId clientId, Money money){
+        new DepositRequest(clientId, money)
     }
 }
