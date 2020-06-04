@@ -1,5 +1,7 @@
 package persistence
 
+import domain.client.Client
+
 class InMemoryDatabase implements infrastructure.shared.InMemoryDatabase{
 
     List<String> noSQL
@@ -9,9 +11,14 @@ class InMemoryDatabase implements infrastructure.shared.InMemoryDatabase{
     }
 
     @Override
-    def findUser(long userId) {
+    def saveUser(Client client) {
+        noSQL.create
+    }
+
+    @Override
+    def findUser(long clientId) {
         noSQL.find(json ->
-                json.id == userId
+                json.id == clientId
         )
     }
 

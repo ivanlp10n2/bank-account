@@ -1,8 +1,10 @@
 package domain.client
 
+import domain.client.Client.ClientId
+
 interface ClientRepository {
 
-   Client find(long userId)
+   Client find(ClientId clientId)
    Client create()
 
 }

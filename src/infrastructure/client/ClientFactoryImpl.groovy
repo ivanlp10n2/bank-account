@@ -19,7 +19,7 @@ class ClientFactoryImpl implements ClientFactory{
 
     @Override
     Client withMoney(String name, Money money) {
-        Client.ClientId id = new Client.ClientId(Utils.random(), name)
+        Client.ClientId id = new Client.ClientId(name)
         withMoney(id, money)
     }
 

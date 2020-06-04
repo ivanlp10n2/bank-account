@@ -1,8 +1,10 @@
 package infrastructure.shared
 
-interface InMemoryDatabase {
+import domain.client.Client
 
-    findUser(long userId)
+interface InMemoryDatabase {
+    saveUser(Client client)
+    findUser(long clientId)
     findAccount(long accountId)
 
 }

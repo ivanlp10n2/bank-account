@@ -10,14 +10,16 @@ class AccountFactoryImpl implements AccountFactory{
     @Override
     Account empty(Client client) {
         assert validate(client)
-        new Account(client, Money.ZERO)
+        Account.AccountId id = new Account.AccountId(client)
+        new Account(id, Money.ZERO)
     }
 
     @Override
     Account withMoney(Client client, Money money) {
-        assert validate(client)
         assert validate(money)
-        new Account(client, money)
+        assert validate(client)
+        Account.AccountId id = new Account.AccountId(client)
+        new Account(id, money)
     }
 
     private boolean validate(Client client){

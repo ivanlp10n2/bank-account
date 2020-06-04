@@ -1,6 +1,5 @@
 package domain.client
 
-
 import domain.account.Account
 import domain.account.money.Money
 import domain.shared.Entity
@@ -25,7 +24,7 @@ class Client implements Entity<Client>{
     }
 
     /**
-     * Client only has one account. I made it bc navigability and future multiple accounts
+     * Client only has one account.
      * */
     void deposit(Money money) {
         account.deposit(money)
@@ -45,20 +44,16 @@ class Client implements Entity<Client>{
     }
 
     static class ClientId{
-        String uuid
-        String name
+        private final String name
 
-        ClientId(String uuid, String name){
-            this.uuid = uuid
+        ClientId(String name){
             this.name = name
         }
 
         @Override
         boolean equals(Object obj) {
-            uuid && name
-                ? uuid == (obj as ClientId).uuid
-                    && name == (obj as ClientId).name
-                : false
+            obj && name
+                && name == (obj as ClientId).name
         }
     }
 
