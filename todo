@@ -1,0 +1,10 @@
+- Armar la carpeta de test
+- Renombrar repository methods
+- Crear excepciones custom
+- La memoria no tiene conocimiento de los objetos de dominio. La informacion la tiene los repositorios
+- injectar la base de datos para asegurar estado
+- Ciclo de vida de Activity
+
+
+
+Modelando Ids y ActivityId. Not that far fromn the first iteration
