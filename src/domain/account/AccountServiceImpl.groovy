@@ -1,6 +1,5 @@
 package domain.account
 
-import domain.account.activity.Activity
 import domain.account.money.Money
 import infrastructure.account.AccountRepositoryImpl
 
@@ -16,5 +15,6 @@ class AccountServiceImpl implements AccountService{
         Account account = accountRepository.find(accountId)
         assert account
         account.deposit(money)
+        accountRepository.updateActivities(account)
     }
 }

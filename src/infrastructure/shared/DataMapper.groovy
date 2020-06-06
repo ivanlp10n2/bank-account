@@ -1,5 +1,5 @@
 package infrastructure.shared
 
-interface DataMapper<T> {
-    T map(String json)
+interface DataMapper<T, K> {
+    T map(K obj)
 }

@@ -6,7 +6,6 @@ import domain.account.money.Money
 import domain.client.Client
 import domain.client.ClientFactory
 import infrastructure.account.AccountFactoryImpl
-import infrastructure.shared.Utils
 
 
 class ClientFactoryImpl implements ClientFactory{

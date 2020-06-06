@@ -20,10 +20,11 @@ class Account implements Entity<Account>{
         balance = startingBalance
     }
 
-    void deposit(Money money){
+    Account deposit(Money money){
         assert valid(money)
         Activity activity = Activity.of(AccountOperation.ADD, money)
         activities.add(activity)
+        this
     }
 
     boolean valid(Money money) {

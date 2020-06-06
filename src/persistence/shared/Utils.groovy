@@ -1,4 +1,4 @@
-package infrastructure.shared
+package persistence.shared
 
 import static java.util.UUID.randomUUID
 
