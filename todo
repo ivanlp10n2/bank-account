@@ -1,10 +1,9 @@
 - Armar la carpeta de test
-- Renombrar repository methods
-- Crear excepciones custom
-- La memoria no tiene conocimiento de los objetos de dominio. La informacion la tiene los repositorios
-- injectar la base de datos para asegurar estado
+InProgress - Renombrar repository methods
+- Crear excepciones custom 
+InPROGRESS - La memoria no tiene conocimiento de los objetos de dominio. La informacion la tiene los repositorios
 - Ciclo de vida de Activity
+- injectar la base de datos para asegurar estado
 
-
-
-Modelando Ids y ActivityId. Not that far fromn the first iteration
+necesito: 
+ - Crear un singleton para la base de datos
