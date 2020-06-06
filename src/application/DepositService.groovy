@@ -1,7 +1,10 @@
 package application
 
 import application.model.DepositRequest
+import domain.account.Account
 import domain.account.AccountRepository
+import domain.account.AccountService
+import domain.account.AccountServiceImpl
 import domain.account.money.Money
 import domain.client.Client
 import domain.client.ClientRepository
@@ -10,19 +13,20 @@ import infrastructure.client.ClientRepositoryImpl
 
 class DepositService implements DepositUseCase{
 
-    ClientRepository clientRepository
     AccountRepository accountRepository
+    AccountService accountService
 
     DepositService(){
-        clientRepository = new ClientRepositoryImpl()
         accountRepository = new AccountRepositoryImpl()
+        accountService = new AccountServiceImpl()
     }
 
     @Override
     void cashDeposit(DepositRequest request){
-        Client client= clientRepository.find(request.clientId)
-        assert client
-        client.deposit(Money.of(request.money))
+        Account account= accountRepository.find(request.accountId)
+        assert account
+        account.deposit(request.money)
+        accountRepository.add(account)
     }
 
 }

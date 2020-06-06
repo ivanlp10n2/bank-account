@@ -1,18 +1,15 @@
 package application.model
 
-import domain.account.money.Money
-import static domain.client.Client.ClientId
-
 class DepositRequest {
-    final ClientId clientId
+    final String accountId
     final Money money
 
-    private DepositRequest(ClientId clientId, Money money){
-        this.clientId = clientId
+    private DepositRequest(String accountId, Money money){
+        this.accountId = accountId
         this.money = money
     }
 
-    static DepositRequest of(ClientId clientId, Money money){
+    static DepositRequest of(String clientId, Money money){
         new DepositRequest(clientId, money)
     }
 }

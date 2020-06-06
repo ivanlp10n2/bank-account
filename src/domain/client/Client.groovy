@@ -26,7 +26,7 @@ class Client implements Entity<Client>{
     /**
      * Client only has one account.
      * */
-    void deposit(Money money) {
+    Client deposit(Money money) {
         account.deposit(money)
     }
 
