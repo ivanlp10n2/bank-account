@@ -1,9 +1,22 @@
 package persistence.client.model
 
-import infrastructure.shared.Serializable
-import persistence.client.account.model.Account
+import infrastructure.shared.DTO
+import persistence.client.account.model.AccountDTO
 
-class Client implements Serializable{
+class ClientDTO implements DTO{
     String id
-    Account account
+    AccountDTO account
+
+    ClientDTO(){}
+
+    ClientDTO(String id, AccountDTO accountDTO){
+        this.id = id
+        this.account = accountDTO
+    }
+
+    @Override
+    DTO from(Map map) {
+        new ClientDTO(  map.id,
+                        new AccountDTO().from(map.account))
+    }
 }

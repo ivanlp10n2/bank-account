@@ -1,10 +1,10 @@
-import application.MoneyDepositServiceTest
+import test.DollarsDepositServiceTest
 
 class BankAccountApplication {
 
     static void main(String[] args) {
         startDatabase()
-        MoneyDepositServiceTest test = new MoneyDepositServiceTest()
+        DollarsDepositServiceTest test = new DollarsDepositServiceTest()
         test.depositMoney()
     }
 

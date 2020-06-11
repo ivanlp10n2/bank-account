@@ -1,9 +1,9 @@
-package infrastructure.account
+package infrastructure.client.account
 
-import domain.account.Account
-import domain.account.AccountFactory
 import domain.client.Client
-import domain.account.money.Money
+import domain.client.account.Account
+import domain.client.account.AccountFactory
+import domain.client.account.money.Money
 
 class AccountFactoryImpl implements AccountFactory{
 
@@ -11,7 +11,7 @@ class AccountFactoryImpl implements AccountFactory{
     Account empty(Client client) {
         assert validate(client)
         Account.AccountId id = new Account.AccountId(client)
-        new Account(id, Money.ZERO)
+        Account.of(id, Money.ZERO)
     }
 
     @Override
@@ -19,7 +19,7 @@ class AccountFactoryImpl implements AccountFactory{
         assert validate(money)
         assert validate(client)
         Account.AccountId id = new Account.AccountId(client)
-        new Account(id, money)
+        Account.of(id, money)
     }
 
     private boolean validate(Client client){

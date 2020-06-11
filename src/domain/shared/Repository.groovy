@@ -1,6 +1,6 @@
-package infrastructure.shared
+package domain.shared
 
-trait Repository<T, ID> {
-    abstract T find(ID identifier)
-    abstract void add(T obj)
+interface Repository<T, ID> {
+    T find(ID identifier)
+    void add(T obj)
 }

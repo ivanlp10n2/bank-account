@@ -1,6 +1,6 @@
 package persistence.client.account.model
 
-import infrastructure.shared.Serializable
+import infrastructure.shared.DTO
 
 /**
 *   {
@@ -9,8 +9,23 @@ import infrastructure.shared.Serializable
  *   balance
  *  }
  */
-class Activity implements Serializable{
+class ActivityDTO implements DTO{
     String activityId
+    Date timestamp
     String operation
-    Money balance
+    MoneyDTO balance
+
+    ActivityDTO(String activityId, Date timestamp, String operation, MoneyDTO balance) {
+        this.activityId = activityId
+        this.timestamp = timestamp
+        this.operation = operation
+        this.balance = balance
+    }
+
+    ActivityDTO(){}
+
+    @Override
+    DTO from(Map map) {
+        return null
+    }
 }

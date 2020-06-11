@@ -1,24 +1,40 @@
-package domain.account
+package domain.client.account
 
-import domain.account.activity.AccountOperation
-import domain.account.activity.Activity
-import domain.account.activity.ActivityFrame
-import domain.account.money.Money
 import domain.client.Client
+import domain.client.account.activity.AccountOperation
+import domain.client.account.activity.Activity
+import domain.client.account.activity.ActivityFrame
+import domain.client.account.money.Money
 import domain.shared.Entity
 
 /**
  * Account cannot be created without a client
- * Aggregate root
  * */
 class Account implements Entity<Account>{
-    private final AccountId id
-    private final Money balance
-    private ActivityFrame activities
+    final AccountId id
+    final Money balance
+    ActivityFrame activities
 
-    Account(AccountId newId, Money startingBalance){
+    Account(AccountId newId, Money baseBalance, ActivityFrame baseActivities){
         id = newId
-        balance = startingBalance
+        balance = baseBalance
+        activities = baseActivities
+    }
+
+    Account(Money baseBalance, ActivityFrame baseActivities){
+        balance = baseBalance
+        activities = baseActivities
+    }
+
+    static Account of(AccountId id, Money money){
+        new Account(id, money, ActivityFrame.empty())
+    }
+
+    static Account of(AccountId id, Money money, ActivityFrame activities){
+        new Account(id, money, activities)
+    }
+    static Account empty() {
+        new Account(Money.ZERO, ActivityFrame.empty())
     }
 
     Account deposit(Money money){
@@ -42,7 +58,7 @@ class Account implements Entity<Account>{
     }
 
     static class AccountId {
-        final private Client owner
+        private Client owner
 
         AccountId(Client owner){
             this.owner = owner

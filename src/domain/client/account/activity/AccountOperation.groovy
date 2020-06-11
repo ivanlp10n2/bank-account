@@ -1,6 +1,7 @@
-package domain.account.activity
+package domain.client.account.activity
 
-import domain.account.money.Money
+import domain.client.account.money.Money
+
 
 enum AccountOperation {
     ADD, WITHDRAW

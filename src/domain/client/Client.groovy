@@ -1,13 +1,13 @@
 package domain.client
 
-import domain.account.Account
-import domain.account.money.Money
+import domain.client.account.Account
+import domain.client.account.money.Money
 import domain.shared.Entity
 
 
 class Client implements Entity<Client>{
     final ClientId id
-    private final Account account
+    final Account account
 
     Client(ClientId clientId, Account account){
         this.id = clientId
@@ -44,7 +44,7 @@ class Client implements Entity<Client>{
     }
 
     static class ClientId{
-        private final String name
+        final String name
 
         ClientId(String name){
             this.name = name

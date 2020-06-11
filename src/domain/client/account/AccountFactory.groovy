@@ -1,7 +1,7 @@
-package domain.account
+package domain.client.account
 
-import domain.account.money.Money
 import domain.client.Client
+import domain.client.account.money.Money
 
 interface AccountFactory {
     Account empty(Client client)

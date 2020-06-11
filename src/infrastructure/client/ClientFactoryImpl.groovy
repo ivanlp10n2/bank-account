@@ -1,11 +1,11 @@
 package infrastructure.client
 
-import domain.account.Account
-import domain.account.AccountFactory
-import domain.account.money.Money
 import domain.client.Client
 import domain.client.ClientFactory
-import infrastructure.account.AccountFactoryImpl
+import domain.client.account.Account
+import domain.client.account.AccountFactory
+import domain.client.account.money.Money
+import infrastructure.client.account.AccountFactoryImpl
 
 
 class ClientFactoryImpl implements ClientFactory{
@@ -30,7 +30,7 @@ class ClientFactoryImpl implements ClientFactory{
     @Override
     Client empty(Client.ClientId id) {
         Client newClient = new Client(id)
-        Account emptyAccount = AccountFactory.empty(newClient)
+        Account emptyAccount = Account.empty(newClient)
         newClient.assignAccount(emptyAccount)
     }
 

@@ -1,13 +1,13 @@
-package domain.account.activity
+package domain.client.account.activity
 
-import domain.account.money.Money
+import domain.client.account.money.Money
 
 import java.time.LocalDateTime
 
 class Activity {
     private final ActivityId id
     private final LocalDateTime timestamp
-    private final AccountOperation operation
+    final AccountOperation operation
     final Money money
 
     private Activity(AccountOperation operation, Money money){

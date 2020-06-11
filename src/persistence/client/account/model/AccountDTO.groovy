@@ -1,6 +1,6 @@
 package persistence.client.account.model
 
-import infrastructure.shared.Serializable
+import infrastructure.shared.DTO
 
 /**
  * {
@@ -10,8 +10,15 @@ import infrastructure.shared.Serializable
  *   }
  *
  * */
-class Account implements Serializable{
+class AccountDTO implements DTO{
     String accountId
-    List<Activity> activities
-    List<Money> balance
+    String ownerId
+    List<ActivityDTO> activities
+    List<MoneyDTO> balance
+
+    @Override
+    DTO from(Map map) {
+        fields.toMapString()
+        return
+    }
 }

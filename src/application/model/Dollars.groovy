@@ -1,5 +1,9 @@
 package application.model
 
-class Money {
+class Dollars {
     BigDecimal amount
+
+    Dollars (BigInteger amount){
+        this.amount = amount
+    }
 }

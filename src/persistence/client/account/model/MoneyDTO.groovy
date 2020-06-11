@@ -1,6 +1,6 @@
 package persistence.client.account.model
 
-import infrastructure.shared.Serializable
+import infrastructure.shared.DTO
 
 /**
  * {
@@ -8,7 +8,21 @@ import infrastructure.shared.Serializable
  *     currency: currency
  * }
  * */
-class Money implements Serializable {
-    BigDecimal amount
+class MoneyDTO implements DTO {
     String currency
+    BigDecimal amount
+
+    MoneyDTO (String currency, BigDecimal amount){
+        this.amount = amount
+        this.currency = currency
+    }
+
+    static MoneyDTO of(String currency, BigDecimal amount){
+        new MoneyDTO(currency, amount)
+    }
+
+    @Override
+    DTO from(Map map) {
+        return null
+    }
 }

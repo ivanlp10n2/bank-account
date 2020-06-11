@@ -1,10 +1,11 @@
-package domain.account.activity
+package domain.client.account.activity
 
-import domain.account.Account
-import domain.account.money.Money
+import domain.client.account.Account
+import domain.client.account.money.Money
+
 
 class ActivityFrame {
-    private final List<Activity> activities
+    final List<Activity> activities
 
     private ActivityFrame(List<Activity> activities){
         this.activities = activities
@@ -13,6 +14,10 @@ class ActivityFrame {
     static ActivityFrame from(List<Activity> activities){
         assert activities
         new ActivityFrame(activities)
+    }
+
+    static ActivityFrame empty(){
+        new ActivityFrame(new ArrayList<Activity>())
     }
 
     Money calculateBalance(Account.AccountId accountId){

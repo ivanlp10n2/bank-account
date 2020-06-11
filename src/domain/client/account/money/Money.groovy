@@ -1,10 +1,10 @@
-package domain.account.money
+package domain.client.account.money
 
 class Money {
     static Money ZERO = Money.dollar(0)
 
-    private final BigDecimal amount
-    private final Currency currency
+    final BigDecimal amount
+    final Currency currency
 
     private Money(Currency currency, BigDecimal amount){
         this.currency = currency
@@ -15,7 +15,7 @@ class Money {
         assert money.currency in Currency.values()
         new Money(money.currency, money.amount)
     }
-    static Money dollar(double value){
+    static Money dollar(BigDecimal value){
         new Money(Currency.USD, BigDecimal.valueOf(value))
     }
 

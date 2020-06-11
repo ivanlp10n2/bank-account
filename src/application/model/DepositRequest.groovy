@@ -1,15 +1,15 @@
 package application.model
 
 class DepositRequest {
-    final String accountId
-    final Money money
+    final String clientId
+    final Dollars money
 
-    private DepositRequest(String accountId, Money money){
-        this.accountId = accountId
+    private DepositRequest(String clientId, Dollars money){
+        this.clientId = clientId
         this.money = money
     }
 
-    static DepositRequest of(String clientId, Money money){
+    static DepositRequest of(String clientId, Dollars money){
         new DepositRequest(clientId, money)
     }
 }
