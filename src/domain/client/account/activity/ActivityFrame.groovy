@@ -4,7 +4,7 @@ import domain.client.account.Account
 import domain.client.account.money.Money
 
 
-class ActivityFrame {
+class ActivityFrame implements Iterable<Activity>{
     final List<Activity> activities
 
     private ActivityFrame(List<Activity> activities){
@@ -43,5 +43,10 @@ class ActivityFrame {
     void add(Activity activity){
         assert activity
         activities.add(activity)
+    }
+
+    @Override
+    Iterator<Activity> iterator() {
+        activities.iterator()
     }
 }

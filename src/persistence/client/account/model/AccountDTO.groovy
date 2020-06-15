@@ -18,7 +18,6 @@ class AccountDTO implements DTO{
 
     @Override
     DTO from(Map map) {
-        fields.toMapString()
-        return
+
     }
 }

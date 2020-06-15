@@ -4,5 +4,4 @@ import domain.client.account.money.Money
 
 interface GetClientDetails {
     Money getBalance()
-
 }
