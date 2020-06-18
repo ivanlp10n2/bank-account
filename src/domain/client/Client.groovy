@@ -28,6 +28,7 @@ class Client implements Entity<Client>{
      * */
     Client deposit(Money money) {
         account.deposit(money)
+        this
     }
 
     Money accountBalance(){

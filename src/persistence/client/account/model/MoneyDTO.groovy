@@ -12,6 +12,8 @@ class MoneyDTO implements DTO {
     String currency
     BigDecimal amount
 
+    MoneyDTO(){}
+
     MoneyDTO (String currency, BigDecimal amount){
         this.amount = amount
         this.currency = currency
@@ -23,6 +25,8 @@ class MoneyDTO implements DTO {
 
     @Override
     DTO from(Map map) {
-        return null
+        this.currency = map.currency
+        this.amount = map.amount
+        this
     }
 }

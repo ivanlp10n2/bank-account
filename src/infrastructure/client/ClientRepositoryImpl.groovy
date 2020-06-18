@@ -3,19 +3,16 @@ package infrastructure.client
 import domain.client.Client
 import domain.client.Client.ClientId
 import domain.client.ClientRepository
-import domain.client.account.activity.Activity
-import infrastructure.shared.DataSource
-import infrastructure.shared.Mapper
 import infrastructure.shared.DTO
+import infrastructure.shared.Mapper
 import persistence.InMemoryDatabase
+import persistence.Record
+import persistence.Table
 import persistence.client.ClientMapper
 import persistence.client.model.ClientDTO
-import persistence.shared.Serializer
+import persistence.shared.DataSource
 
 class ClientRepositoryImpl implements ClientRepository{
-    private final static String CLIENT_COLLECTION = "Client"
-    private final static String ACCOUNT_SUBSET = "Account"
-    private final static String ACTIVITIES_SUBSET = "Activities"
 
     private final DataSource ds
     private final Mapper mapper
@@ -27,8 +24,8 @@ class ClientRepositoryImpl implements ClientRepository{
 
     @Override
     Client find(ClientId clientId) {
-        String result = ds.findById(CLIENT_COLLECTION, clientId.name)
-        ClientDTO dto = new ClientDTO().from(Serializer.deserialize(result))
+        Record record = ds.findById(Table.Name.CLIENT, clientId.name)
+        ClientDTO dto = new ClientDTO().from(record)
         Client client = mapper.map( dto )
         assert validateIntegrity(client)
         client
@@ -41,19 +38,7 @@ class ClientRepositoryImpl implements ClientRepository{
     @Override
     void add(Client client) {
         DTO pogo = mapper.map(client)
-        String sPogo = Serializer.serialize(pogo)
-        ds.add(CLIENT_COLLECTION, sPogo)
+        ds.create(Table.Name.CLIENT, pogo)
     }
 
-    @Override
-    void addNewActivities(Client client) {
-            client.account.activities.each { Activity activity ->
-                if (!activity.id)
-                    saveActivity(mapper.map(activity))
-        }
-    }
-
-    void saveActivity(DTO activity) {
-        ds.add(ACTIVITIES_SUBSET, activity)
-    }
 }

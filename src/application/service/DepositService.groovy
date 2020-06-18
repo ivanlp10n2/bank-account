@@ -20,8 +20,8 @@ class DepositService implements DepositUseCase{
         Client.ClientId clientId = new Client.ClientId(request.clientId)
         Client client = clientRepository.find(clientId)
         assert client
-        Money money = Money.dollar(request.money)
+        Money money = Money.dollar(request.money.amount)
         client.deposit(money)
-        clientRepository.addNewActivities(client)
+        clientRepository.add(client) //TODO: Tendria que ser update
     }
 }

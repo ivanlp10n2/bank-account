@@ -1,15 +1,17 @@
 package persistence
 
-import groovy.json.JsonSlurper
-import infrastructure.shared.DataSource
 
+import persistence.shared.DataSource
+/**
+ * does not include schema impl
+ * */
 enum InMemoryDatabase implements DataSource{
     INSTANCE
 
-    private Map<String, String> data
+    private Set<Table> tables
 
     private InMemoryDatabase(){
-        data = [:].withDefault {[]}
+        tables = new HashSet<>()
     }
 
     synchronized static InMemoryDatabase getInstance(){
@@ -17,20 +19,30 @@ enum InMemoryDatabase implements DataSource{
     }
 
     @Override
-    void add(String collection, String json) {
-        data[collection] << json
+    void create(Table.Name tableName, Record obj) {
+        if (!tableName in tables*.name)
+            tables << Table.create(tableName)
+
+        Table table = tables.getAt(tableName)
+        table.add(obj)
     }
 
     @Override
-    String findById(String collection, String id) {
-        data[collection].find{ String row ->
-            Map json = new JsonSlurper().parseText(row)
-            id == json.id
-        }
+    Record findById(Table.Name tableName, Record.RecordId recordId) {
+        if (!tableName in tables*.name)
+            throw new TableNotFoundException()
+
+        Table table = tables.getAt(tableName)
+        table.find(recordId)
     }
 
     @Override
-    void remove(String collection, String id) {
+    void update(Table.Name tableName, Record obj) {
+        if (!tableName in tables*.name)
+           throw new TableNotFoundException()
+
+        Table table = tables.getAt(tableName)
+        table.update(obj)
 
     }
 }

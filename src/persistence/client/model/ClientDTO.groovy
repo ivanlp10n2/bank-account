@@ -16,7 +16,8 @@ class ClientDTO implements DTO{
 
     @Override
     DTO from(Map map) {
-        new ClientDTO(  map.id,
-                        new AccountDTO().from(map.account))
+        this.id = map.id
+        this.account = new AccountDTO().from(map.account)
+        this
     }
 }

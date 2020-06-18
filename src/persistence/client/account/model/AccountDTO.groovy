@@ -1,11 +1,10 @@
 package persistence.client.account.model
 
-import infrastructure.shared.DTO
 
+import infrastructure.shared.DTO
 /**
  * {
  *   accountId: gui,
- *   activities:[acitivtyId, owner, timestamp, operation, balance]
  *   balance: [ammount, currency],
  *   }
  *
@@ -13,11 +12,21 @@ import infrastructure.shared.DTO
 class AccountDTO implements DTO{
     String accountId
     String ownerId
-    List<ActivityDTO> activities
-    List<MoneyDTO> balance
+    MoneyDTO balance
+
+    AccountDTO(){}
+
+    AccountDTO(String accountId, String ownerId, MoneyDTO balance) {
+        this.accountId = accountId
+        this.ownerId = ownerId
+        this.balance = balance
+    }
 
     @Override
     DTO from(Map map) {
-
+        this.accountId = map.accountId
+        this.ownerId = map.ownerId
+        this.balance = new MoneyDTO().from(map.balance)
+        this
     }
 }

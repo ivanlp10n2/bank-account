@@ -1,46 +1,35 @@
 package domain.client.account
 
 import domain.client.Client
-import domain.client.account.activity.AccountOperation
-import domain.client.account.activity.Activity
-import domain.client.account.activity.ActivityFrame
 import domain.client.account.money.Money
 import domain.shared.Entity
-
 /**
  * Account cannot be created without a client
  * */
 class Account implements Entity<Account>{
     final AccountId id
-    final Money balance
-    ActivityFrame activities
+    Money balance
 
-    Account(AccountId newId, Money baseBalance, ActivityFrame baseActivities){
+    Account(AccountId newId, Money baseBalance){
         id = newId
         balance = baseBalance
-        activities = baseActivities
     }
 
-    Account(Money baseBalance, ActivityFrame baseActivities){
+    Account(Money baseBalance){
         balance = baseBalance
-        activities = baseActivities
     }
 
     static Account of(AccountId id, Money money){
-        new Account(id, money, ActivityFrame.empty())
+        new Account(id, money, )
     }
 
-    static Account of(AccountId id, Money money, ActivityFrame activities){
-        new Account(id, money, activities)
-    }
     static Account empty() {
-        new Account(Money.ZERO, ActivityFrame.empty())
+        new Account(Money.ZERO)
     }
 
     Account deposit(Money money){
         assert valid(money)
-        Activity activity = Activity.of(AccountOperation.ADD, money)
-        activities.add(activity)
+        this.balance += money
         this
     }
 
@@ -49,7 +38,7 @@ class Account implements Entity<Account>{
     }
 
     Money currentBalance(){
-        activities.calculateBalance(id)
+        balance
     }
 
     @Override
