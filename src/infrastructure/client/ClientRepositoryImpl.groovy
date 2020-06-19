@@ -3,19 +3,17 @@ package infrastructure.client
 import domain.client.Client
 import domain.client.Client.ClientId
 import domain.client.ClientRepository
+import infrastructure.client.account.model.ClientDTO
 import infrastructure.shared.DTO
 import infrastructure.shared.Mapper
-import persistence.InMemoryDatabase
-import persistence.Record
-import persistence.Table
-import persistence.client.ClientMapper
-import persistence.client.model.ClientDTO
-import persistence.shared.DataSource
+import persistence.api.DataSource
+import persistence.impl.InMemoryDatabase
 
 class ClientRepositoryImpl implements ClientRepository{
 
     private final DataSource ds
     private final Mapper mapper
+    private final String CLIENT_TABLE = "Client"
 
     ClientRepositoryImpl(){
         ds = InMemoryDatabase.INSTANCE
@@ -24,11 +22,16 @@ class ClientRepositoryImpl implements ClientRepository{
 
     @Override
     Client find(ClientId clientId) {
-        Record record = ds.findById(Table.Name.CLIENT, clientId.name)
-        ClientDTO dto = new ClientDTO().from(record)
+        ClientDTO dtoId = new ClientDTO(clientId.name)
+        DTO dto = ds.findById(CLIENT_TABLE, dtoId)
+        assert validateIntegrity(dto)
         Client client = mapper.map( dto )
         assert validateIntegrity(client)
         client
+    }
+
+    private Boolean validateIntegrity(DTO dto ) {
+        dto
     }
 
     private Boolean validateIntegrity(Client client) {
@@ -38,7 +41,12 @@ class ClientRepositoryImpl implements ClientRepository{
     @Override
     void add(Client client) {
         DTO pogo = mapper.map(client)
-        ds.create(Table.Name.CLIENT, pogo)
+        ds.create(CLIENT_TABLE, pogo)
     }
 
+    @Override
+    Client update(Client client) {
+        ClientDTO dto = mapper.map(client)
+        ds.update(CLIENT_TABLE, dto)
+    }
 }

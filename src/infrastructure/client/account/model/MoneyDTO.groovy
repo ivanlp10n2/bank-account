@@ -1,4 +1,4 @@
-package persistence.client.account.model
+package infrastructure.client.account.model
 
 import infrastructure.shared.DTO
 
@@ -8,7 +8,7 @@ import infrastructure.shared.DTO
  *     currency: currency
  * }
  * */
-class MoneyDTO implements DTO {
+class MoneyDTO implements DTO{
     String currency
     BigDecimal amount
 
@@ -21,12 +21,5 @@ class MoneyDTO implements DTO {
 
     static MoneyDTO of(String currency, BigDecimal amount){
         new MoneyDTO(currency, amount)
-    }
-
-    @Override
-    DTO from(Map map) {
-        this.currency = map.currency
-        this.amount = map.amount
-        this
     }
 }

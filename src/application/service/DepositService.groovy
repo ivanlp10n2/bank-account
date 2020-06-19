@@ -22,6 +22,6 @@ class DepositService implements DepositUseCase{
         assert client
         Money money = Money.dollar(request.money.amount)
         client.deposit(money)
-        clientRepository.add(client) //TODO: Tendria que ser update
+        clientRepository.update(client)
     }
 }

@@ -28,6 +28,6 @@ class DollarsDepositServiceTest extends GroovyTestCase{
 
         useCase.cashDeposit(request)
 
-        print queryClientDetails.getBalance()
+        print queryClientDetails.getBalance("francisco")
     }
 }

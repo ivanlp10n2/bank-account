@@ -1,4 +1,6 @@
-package persistence
+package persistence.impl
+
+import persistence.shared.LockedTableException
 
 class Table {
     final Name name
@@ -24,22 +26,23 @@ class Table {
 
     Record find(Record.RecordId recordId){
         records.find{ record ->
-            record.id == recordId
-        }?.data
+            record.recordId == recordId
+        }
     }
 
     Record update(Record record){
-        Record persistedRecord = find(record.id)
+        Record persistedRecord = find(record.recordId)
         if (!persistedRecord)
             throw new RecordNotFound()
         if (locked)
             throw new LockedTableException()
 
         persistedRecord.data = record.data
+        persistedRecord
     }
 
     enum Name {
-        CLIENT
+        Client
 
     }
 }

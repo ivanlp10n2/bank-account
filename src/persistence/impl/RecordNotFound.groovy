@@ -1,4 +1,4 @@
-package persistence
+package persistence.impl
 
 import persistence.shared.PersistenceException
 

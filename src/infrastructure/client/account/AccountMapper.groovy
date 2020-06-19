@@ -1,11 +1,11 @@
-package persistence.client.account
+package infrastructure.client.account
 
 import domain.client.Client
 import domain.client.account.Account
 import domain.client.account.money.Money
+import infrastructure.client.account.model.AccountDTO
+import infrastructure.client.account.model.MoneyDTO
 import infrastructure.shared.Mapper
-import persistence.client.account.model.AccountDTO
-import persistence.client.account.model.MoneyDTO
 import persistence.shared.Utils
 
 class AccountMapper implements Mapper<Account, AccountDTO>{

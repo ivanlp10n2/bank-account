@@ -2,6 +2,7 @@ package domain.client
 
 import domain.client.account.Account
 import domain.client.account.money.Money
+import domain.shared.AggregateId
 import domain.shared.Entity
 
 
@@ -44,8 +45,8 @@ class Client implements Entity<Client>{
         new Client(this, account)
     }
 
-    static class ClientId{
-        final String name
+    static class ClientId implements AggregateId{
+        String name
 
         ClientId(String name){
             this.name = name
