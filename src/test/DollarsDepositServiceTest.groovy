@@ -20,7 +20,7 @@ class DollarsDepositServiceTest extends GroovyTestCase{
     }
 
     void startup(){
-        new ClientHelper().createClientWithDollar("francisco", 100)
+        new ClientTestHelper().createClientWithDollar("francisco", 100)
     }
 
     void depositMoney() {
@@ -28,6 +28,6 @@ class DollarsDepositServiceTest extends GroovyTestCase{
 
         useCase.cashDeposit(request)
 
-        print queryClientDetails.getBalance("francisco")
+        print queryClientDetails.getBalance("francaisco")
     }
 }
