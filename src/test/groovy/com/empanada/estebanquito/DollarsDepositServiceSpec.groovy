@@ -6,7 +6,6 @@ import com.empanada.estebanquito.application.service.DepositService
 import com.empanada.estebanquito.application.service.GetClientDetailsImpl
 import com.empanada.estebanquito.application.usecase.DepositUseCase
 import com.empanada.estebanquito.application.usecase.GetClientDetails
-import com.empanada.estebanquito.domain.client.account.money.Money
 import org.junit.experimental.categories.Category
 import spock.lang.Specification
 
@@ -23,15 +22,17 @@ class DollarsDepositServiceSpec extends Specification{
 
     def 'An existing client deposits money in his account'() {
         setup:
-        new ClientTestHelper().createAndSaveClientWithDollar("francisco", 100)
+        new ClientTestHelper().createAndSaveClientWithDollar(clientName, startBalance)
 
         when:
-        def request = DepositRequest .of("francisco", new Dollars(10))
+        def request = DepositRequest .of(clientName, moneyToDeposit)
         useCase.cashDeposit( request )
 
         then:
-        queryDetails.getBalance("francisco") == Money.dollar(110)
+        queryDetails.getBalance(clientName) == finalBalance
 
-
+        where:
+        clientName   | startBalance     | moneyToDeposit    | finalBalance
+        "francisco"  | new Dollars(100) | new Dollars(10)   | new Dollars(110)
     }
 }

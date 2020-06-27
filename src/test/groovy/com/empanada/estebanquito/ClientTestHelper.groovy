@@ -1,5 +1,6 @@
 package com.empanada.estebanquito
 
+import com.empanada.estebanquito.application.model.Dollars
 import com.empanada.estebanquito.domain.client.Client
 import com.empanada.estebanquito.domain.client.ClientFactory
 import com.empanada.estebanquito.domain.client.ClientRepository
@@ -16,8 +17,8 @@ class ClientTestHelper {
         clientFactory = new ClientFactoryImpl()
     }
 
-    void createAndSaveClientWithDollar(String name, BigDecimal amount){
-        Client client = clientFactory.withMoney( name, Money.dollar(amount))
+    void createAndSaveClientWithDollar(String name, Dollars dollars){
+        Client client = clientFactory.withMoney( name, Money.dollar(dollars.amount))
         clientRepository.add(client)
     }
 }

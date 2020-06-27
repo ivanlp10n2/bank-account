@@ -1,7 +1,7 @@
 package com.empanada.estebanquito.application.usecase
 
-import com.empanada.estebanquito.domain.client.account.money.Money
+import com.empanada.estebanquito.application.model.Dollars
 
 interface GetClientDetails {
-    Money getBalance(String clientId)
+    Dollars getBalance(String clientId)
 }
