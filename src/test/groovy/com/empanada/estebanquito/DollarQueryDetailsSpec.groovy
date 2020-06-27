@@ -14,11 +14,11 @@ class DollarQueryDetailsSpec extends Specification{
         clientDetailsUseCase = new GetClientDetailsImpl()
     }
 
-    void 'Save new client and query its details'(){
-        setup:
+    void 'Save new client and query its balance'(){
+        setup: 'Save new client'
         new ClientTestHelper().createAndSaveClientWithDollar(clientName, startBalance)
 
-        expect:
+        expect: 'Check its balance is the same as we saved'
         clientDetailsUseCase.getBalance(clientName) == startBalance
 
         where:

@@ -21,14 +21,14 @@ class DollarsDepositServiceSpec extends Specification{
     }
 
     def 'An existing client deposits money in his account'() {
-        setup:
+        setup: "An existing client with id 'francisco' with 100 USD in his account"
         new ClientTestHelper().createAndSaveClientWithDollar(clientName, startBalance)
 
-        when:
+        when: "Deposits 10 USD in his account"
         def request = DepositRequest .of(clientName, moneyToDeposit)
         useCase.cashDeposit( request )
 
-        then:
+        then: "Balance of his account is 110 USD"
         queryDetails.getBalance(clientName) == finalBalance
 
         where:
