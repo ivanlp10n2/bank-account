@@ -19,6 +19,6 @@ class GetClientDetailsImpl implements GetClientDetails{
         assert (sClientId)
         Client.ClientId clientId = new Client.ClientId(sClientId)
         Client client = clientRepository.find(clientId)
-        Dollars.from(client.account.balance)
+        Dollars.from(client.accountBalance())
     }
 }
