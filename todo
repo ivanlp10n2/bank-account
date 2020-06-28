@@ -1,19 +1,14 @@
 DONE - injectar la base de datos para asegurar estado
 DONE - La memoria no tiene conocimiento de los objetos de dominio. La informacion la tiene los repositorios
 DONE - Renombrar repository methods
+DONE - Armar la carpeta de test
+REJECTED - Ciclo de vida de Activity
 -----------------------------------------
+
 - Implementar modelo relacional. Luego en la 2da iteracion refactor -> event driven
-- Armar la carpeta de test
 - Crear excepciones custom
-- Ciclo de vida de Activity
 
 necesito: 
 DONE - Crear un singleton para la base de datos
 DONE - Definir que los mapper son a Serializable
- - Guardar el id y timestamp de las actividades
- - Usar singleton con los parametros correctos
-
-
-
-
- - Should we allow programmer to make its own decisions? It might be better to constrains them into a ddd schemma
+REJECTED - Guardar el id y timestamp de las actividades
