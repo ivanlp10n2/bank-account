@@ -8,3 +8,7 @@
  */
 
 rootProject.name = 'estebanquito'
+include 'eventsourcing'
+include 'banking'
+include 'persistence'
+
