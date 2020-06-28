@@ -11,33 +11,13 @@ plugins {
     id 'application'
 }
 
-group = 'com.empanada.estebanquito'
-
-application {
-    mainClassName = 'com.empanada.estebanquito.BankAccountApplication'
+subprojects {
+    version = '1.0'
 }
 
-test {
-    useJUnit {
-        includeCategories 'com.empanada.estebanquito.UnitTest'
-    }
-    testLogging {
-        showStandardStreams = true
+allprojects {
+    repositories {
+        jcenter()
     }
 }
 
-sourceSets{
-    test.java.srcDirs = ['src/test/groovy']
-    test.resources.srcDirs = ['src/test/resources']
-}
-
-repositories {
-    jcenter()
-}
-
-dependencies {
-    implementation 'org.codehaus.groovy:groovy-all:2.5.11'
-
-    // Use the awesome Spock testing and specification framework
-    testImplementation 'org.spockframework:spock-core:1.3-groovy-2.5'
-}
