@@ -6,7 +6,7 @@ import com.empanada.banking.infrastructure.client.account.model.ClientDTO
 import com.empanada.persistence.api.DTO
 import com.empanada.banking.infrastructure.shared.Mapper
 import com.empanada.persistence.api.DataSource
-import com.empanada.persistence.impl.InMemoryDatabase
+import com.empanada.persistence.memory.InMemoryDatabase
 
 class ClientRepositoryImpl implements ClientRepository{
 

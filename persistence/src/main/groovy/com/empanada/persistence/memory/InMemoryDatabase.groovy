@@ -1,4 +1,4 @@
-package com.empanada.persistence.impl
+package com.empanada.persistence.memory
 
 import com.empanada.persistence.api.AggregateDTO
 import com.empanada.persistence.api.DTO

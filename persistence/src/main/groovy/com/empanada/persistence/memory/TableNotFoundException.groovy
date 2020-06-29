@@ -1,4 +1,4 @@
-package com.empanada.persistence.impl
+package com.empanada.persistence.memory
 
 import com.empanada.persistence.shared.PersistenceException
 

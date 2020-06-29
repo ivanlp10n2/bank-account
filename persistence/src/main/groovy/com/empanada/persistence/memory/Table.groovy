@@ -1,4 +1,4 @@
-package com.empanada.persistence.impl
+package com.empanada.persistence.memory
 
 
 import com.empanada.persistence.shared.LockedTableException
@@ -34,7 +34,7 @@ class Table {
     Record update(Record record){
         Record persistedRecord = find(record.recordId)
         if (!persistedRecord)
-            throw new RecordNotFound()
+            throw new RecordNotFoundException()
         if (locked)
             throw new LockedTableException()
 
